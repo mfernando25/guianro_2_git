@@ -6,29 +6,98 @@
 
 ## Objetivo de la práctica
 
-Aprender a colaborar en un mismo proyecto utilizando Git y GitHub. Un integrante prepara el repositorio y asigna una tarea; el otro trabaja únicamente sobre los archivos que le corresponden y propone sus cambios mediante un Pull Request. El propietario revisa la propuesta y decide si la acepta o solicita correcciones.
+Aprender a colaborar en un mismo proyecto utilizando Git y GitHub. Un integrante crea el repositorio, lo clona en su computadora y sube el código inicial desde Visual Studio Code. Después invita al segundo integrante, quien trabaja únicamente sobre los archivos que le corresponden y propone sus cambios mediante un Pull Request. El propietario revisa la propuesta y decide si la acepta o solicita correcciones.
 
 En esta guía trabajaremos con **dos integrantes**:
 
-- **Integrante 1 – Propietario:** crea y prepara el repositorio, invita al colaborador y revisa sus cambios.
+- **Integrante 1 – Propietario:** crea el repositorio, lo prepara desde su computadora, sube el generador de AFD, invita al colaborador y revisa sus cambios.
 - **Integrante 2 – Colaborador:** acepta la invitación, clona el repositorio, trabaja en una rama propia y propone los cambios asignados.
 
 **Importante:** no se trabajará directamente sobre la rama principal `main`. Los cambios del colaborador se enviarán mediante una rama y un Pull Request.
 
 ---
 
-## Paso 1 – El propietario crea y prepara el repositorio
+## Paso 1 – El propietario crea el repositorio y sube el generador desde VS Code
 
-Este paso lo realiza el integrante 1.
+Este paso lo realiza el integrante 1. Primero creará el repositorio en GitHub; después lo clonará en su computadora y subirá el archivo del generador utilizando Visual Studio Code.
 
-### 1.1 Crear el repositorio y subir el código inicial
+### 1.1 Crear un repositorio vacío en GitHub
 
 1. Ingresa a GitHub.
-2. Crea un repositorio nuevo para el proyecto.
-3. Agrega el código inicial del generador de AFD y los archivos necesarios para el proyecto.
-4. Comprueba que los archivos aparezcan correctamente en la rama principal, llamada `main`.
+2. Selecciona **New repository**.
+3. Escribe un nombre para el repositorio.
+4. Selecciona **Public**. Esto permitirá utilizar la protección de ramas con GitHub Free.
+5. No marques las opciones para agregar un README, un archivo `.gitignore` o una licencia. El repositorio debe crearse vacío para realizar el primer envío desde la computadora.
+6. Selecciona **Create repository**.
+7. En la página del repositorio, haz clic en **Code** y copia la URL **HTTPS**. La utilizarás para clonarlo en el siguiente apartado.
 
-### 1.2 Proteger la rama principal
+### 1.2 Configurar Git y clonar el repositorio en la computadora
+
+1. Abre Visual Studio Code.
+2. Abre una nueva terminal desde **Terminal > New Terminal**.
+3. Configura tu identidad de Git. Reemplaza los datos de ejemplo por tu nombre y el correo asociado a tu cuenta de GitHub:
+
+```bash
+git config --global user.name "Tu Nombre"
+git config --global user.email tu_correo_de_github@example.com
+```
+
+4. Comprueba la configuración:
+
+```bash
+git config --global --get user.name
+git config --global --get user.email
+```
+
+5. En la terminal de VS Code, clona el repositorio utilizando la URL HTTPS que copiaste:
+
+```bash
+git clone https://github.com/usuario-dueño/nombre-repositorio.git
+```
+
+Reemplaza la URL de ejemplo por la dirección de tu repositorio.
+
+6. Entra a la carpeta del repositorio:
+
+```bash
+cd nombre-repositorio
+```
+
+7. En VS Code, selecciona **File > Open Folder** y abre la carpeta del repositorio que acabas de clonar.
+
+### 1.3 Incorporar y subir el generador de AFD desde VS Code
+
+1. Copia el archivo del generador de AFD a la carpeta del repositorio que abriste en VS Code. Si el generador está compuesto por varios archivos necesarios para ejecutarlo, incorpora también esos archivos.
+2. Comprueba en el panel **Explorer** de VS Code que el archivo del generador aparezca dentro del repositorio.
+3. Abre la terminal integrada y verifica los archivos detectados por Git:
+
+```bash
+git status
+```
+
+4. Agrega el archivo del generador. En el ejemplo se utiliza `Main.py`; reemplaza el nombre si tu archivo tiene otro:
+
+```bash
+git add Main.py
+```
+
+Si incorporaste otros archivos necesarios, agrégalos también de forma explícita.
+
+5. Registra la incorporación mediante un commit:
+
+```bash
+git commit -m "Agrega generador de AFD"
+```
+
+6. Sube el contenido a la rama principal de GitHub:
+
+```bash
+git push -u origin main
+```
+
+7. Actualiza la página del repositorio en GitHub y comprueba que el archivo del generador aparece en la rama `main`.
+
+### 1.4 Proteger la rama principal
 
 La rama `main` contendrá la versión principal del proyecto. Para evitar que los cambios del colaborador se incorporen sin revisión, configura una regla de protección:
 
@@ -49,7 +118,7 @@ main
 
 **Nota:** las reglas de protección de ramas están disponibles en repositorios públicos con GitHub Free. En repositorios privados se requiere un plan GitHub Pro, Team o Enterprise para esta función.
 
-### 1.3 Invitar al colaborador
+### 1.5 Invitar al colaborador
 
 1. En el repositorio, selecciona **Settings**.
 2. En el menú izquierdo, selecciona **Collaborators** o **Collaborators and teams**.
@@ -67,14 +136,15 @@ Este paso lo realiza el integrante 2.
 1. Ingresa a tu correo electrónico y busca la invitación de GitHub.
 2. Haz clic en **View invitation** y acepta la invitación.
 3. Accede al repositorio compartido.
-4. Abre Git Bash y configura tu identidad de Git en la computadora:
+4. Abre Visual Studio Code y una nueva terminal desde **Terminal > New Terminal**.
+5. Configura tu identidad de Git en la computadora:
 
 ```bash
 git config --global user.name "Tu Nombre"
 git config --global user.email tu_correo_de_github@example.com
 ```
 
-5. Comprueba la configuración:
+6. Comprueba la configuración:
 
 ```bash
 git config --global --get user.name
@@ -85,29 +155,28 @@ git config --global --get user.email
 
 ---
 
-## Paso 3 – Clonar el repositorio y crear una rama de trabajo
+## Paso 3 – El colaborador clona el repositorio y crea una rama de trabajo
 
 Este paso lo realiza el integrante 2.
 
 1. Entra al repositorio del integrante 1.
 2. Haz clic en el botón **Code** y copia la URL **HTTPS**.
-3. Elige una carpeta de trabajo y ábrela en Visual Studio Code.
-4. Abre el terminal **Git Bash**.
-5. Clona el repositorio utilizando la URL copiada:
+3. En la terminal de VS Code, ubícate en la carpeta donde guardarás el proyecto.
+4. Clona el repositorio utilizando la URL copiada:
 
 ```bash
-git clone https://github.com/usuario-dueño/proyecto_final.git
+git clone https://github.com/usuario-dueño/nombre-repositorio.git
 ```
 
 Reemplaza la URL de ejemplo por la dirección del repositorio compartido.
 
-6. Entra a la carpeta que se creó al clonar el repositorio:
+5. Entra a la carpeta que se creó al clonar el repositorio:
 
 ```bash
-ls
-cd nombre-de-la-carpeta
+cd nombre-repositorio
 ```
 
+6. Abre esa carpeta en VS Code mediante **File > Open Folder**.
 7. Comprueba que estás en la rama principal y que el repositorio está actualizado:
 
 ```bash
