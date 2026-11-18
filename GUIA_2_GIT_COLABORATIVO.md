@@ -52,7 +52,7 @@ git config --global --get user.email
 5. En la terminal de VS Code, clona el repositorio utilizando la URL HTTPS que copiaste:
 
 ```bash
-git clone https://github.com/usuario-dueño/nombre-repositorio.git
+git clone https://github.com/tu-usuario/miercolescasidiciembre.git
 ```
 
 Reemplaza la URL de ejemplo por la dirección de tu repositorio.
@@ -60,7 +60,7 @@ Reemplaza la URL de ejemplo por la dirección de tu repositorio.
 6. Entra a la carpeta del repositorio:
 
 ```bash
-cd nombre-repositorio
+cd miercolescasidiciembre
 ```
 
 7. En VS Code, selecciona **File > Open Folder** y abre la carpeta del repositorio que acabas de clonar.
@@ -165,7 +165,7 @@ Este paso lo realiza el integrante 2.
 4. Clona el repositorio utilizando la URL copiada:
 
 ```bash
-git clone https://github.com/usuario-dueño/nombre-repositorio.git
+git clone https://github.com/tu-usuario/miercolescasidiciembre.git
 ```
 
 Reemplaza la URL de ejemplo por la dirección del repositorio compartido.
@@ -173,7 +173,7 @@ Reemplaza la URL de ejemplo por la dirección del repositorio compartido.
 5. Entra a la carpeta que se creó al clonar el repositorio:
 
 ```bash
-cd nombre-repositorio
+cd miercolescasidiciembre
 ```
 
 6. Abre esa carpeta en VS Code mediante **File > Open Folder**.
@@ -187,10 +187,10 @@ git pull origin main
 8. Crea una rama para realizar únicamente la tarea asignada:
 
 ```bash
-git switch -c tarea-colaborador
+git switch -c desarrollo
 ```
 
-**Ojo:** trabaja en la rama `tarea-colaborador`, no directamente en `main`. Modifica únicamente los archivos relacionados con la tarea que te asignó el propietario.
+**Ojo:** trabaja en la rama `desarrollo`, no directamente en `main`. Modifica únicamente los archivos relacionados con la tarea que te asignó el propietario.
 
 ---
 
@@ -224,7 +224,7 @@ git commit -m "Describe el cambio realizado"
 7. Sube tu rama a GitHub:
 
 ```bash
-git push -u origin tarea-colaborador
+git push -u origin desarrollo
 ```
 
 ### 4.2 Crear el Pull Request
@@ -235,7 +235,7 @@ Después de subir la rama:
 2. Selecciona **Compare & pull request** si aparece la notificación, o entra a **Pull requests** y selecciona **New pull request**.
 3. Comprueba que la comparación sea:
    - **base:** `main`
-   - **compare:** `tarea-colaborador`
+   - **compare:** `desarrollo`
 4. Escribe un título y una descripción breve de lo que realizaste.
 5. Selecciona **Create pull request**.
 
