@@ -270,30 +270,108 @@ Cuando la propuesta esté aprobada:
 
 De esta manera, los cambios del colaborador solo se incorporan a la versión principal después de la revisión y aprobación del propietario.
 
----
+### 4.5 El propietario agrega un archivo de instrucciones a la rama principal
 
-## Paso 5 – Actualizar el repositorio y ejecutar el diagramador de AFD
+Este paso lo realiza el integrante 1. Como la rama `main` está protegida, el propietario también debe utilizar una rama de trabajo y un Pull Request para incorporar este nuevo archivo.
 
-Una vez integrado el Pull Request, ambos integrantes pueden incorporar los cambios de la rama principal `main` sin cambiar de rama.
-
-1. Ejecuta el siguiente comando:
+1. En la terminal de VS Code, actualiza tu copia local de `main` para recibir los cambios que acabas de integrar:
 
 ```bash
 git pull origin main
 ```
 
-Este comando descarga los cambios de `main` e **incorpora esos cambios a la rama en la que te encuentras actualmente**. Así, el propietario actualizará su rama `main` y el colaborador podrá permanecer en `desarrollo`.
+2. Crea una rama para preparar el archivo de instrucciones:
 
-2. Instala las dependencias y librerías necesarias:
+```bash
+git switch -c instrucciones-ejecucion
+```
+
+3. En VS Code, crea un archivo nuevo llamado `INSTRUCCIONES.md` en la carpeta principal del repositorio. Escribe dentro las instrucciones para ejecutar el diagramador:
+
+```markdown
+# Instrucciones para ejecutar el diagramador de AFD
+
+1. Instalar las librerías necesarias:
+
+   ```bash
+   pip install networkx matplotlib
+   ```
+
+2. Ejecutar el programa:
+
+   ```bash
+   python Main.py
+   ```
+```
+
+4. Guarda el archivo y comprueba que Git lo detecta:
+
+```bash
+git status
+```
+
+5. Agrega el archivo y registra el cambio:
+
+```bash
+git add INSTRUCCIONES.md
+git commit -m "Agrega instrucciones para ejecutar el diagramador"
+```
+
+6. Sube por primera vez esta nueva rama a GitHub:
+
+```bash
+git push -u origin instrucciones-ejecucion
+```
+
+7. En GitHub, crea un Pull Request y comprueba que la comparación sea:
+   - **base:** `main`
+   - **compare:** `instrucciones-ejecucion`
+
+8. El integrante 2 revisa el archivo en **Files changed** y, si las instrucciones son correctas, selecciona **Review changes** y elige **Approve**.
+
+9. El integrante 1 integra el Pull Request con **Merge pull request** y **Confirm merge**. Comprueba que `INSTRUCCIONES.md` aparece en la rama `main`.
+
+**Resultado esperado:** el propietario incorporó un archivo nuevo a `main) mediante un Pull Request. Ahora el colaborador podrá descargar ese archivo desde su rama `desarrollo` en el siguiente paso.
+
+---
+
+## Paso 5 – Actualizar el repositorio y ejecutar el diagramador de AFD
+
+Una vez integrado el segundo Pull Request, cada integrante actualiza su copia local:
+
+**Integrante 1 – Propietario**
+
+Como el Pull Request se integró desde GitHub y tu copia local está en la rama `instrucciones-ejecucion`, vuelve a `main` y actualízala:
+
+```bash
+git switch main
+git pull origin main
+```
+
+**Integrante 2 – Colaborador**
+
+Permanece en la rama `desarrollo` y ejecuta:
+
+```bash
+git pull origin main
+```
+
+Este comando descarga los cambios de `main` y los incorpora a la rama actual `desarrollo`. No necesitas cambiar de rama.
+
+Comprueba en el panel **Explorer** de VS Code que ahora también aparece el archivo `INSTRUCCIONES.md`. Ábrelo y sigue sus dos indicaciones:
+
+1. Instala las dependencias y librerías necesarias:
 
 ```bash
 pip install networkx matplotlib
 ```
 
-3. Ejecuta el programa:
+2. Ejecuta el programa:
 
 ```bash
 python Main.py
 ```
 
 También puedes utilizar el nombre del archivo en el que se encuentra el código, si es diferente de `Main.py`.
+
+**Resultado esperado:** el colaborador recibe en su rama `desarrollo` un archivo que el propietario agregó posteriormente a `main`. Así se comprueba que una rama de trabajo puede incorporar actualizaciones de la rama principal sin cambiar de rama.
