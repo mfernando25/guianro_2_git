@@ -221,10 +221,16 @@ git add nombre-del-archivo.py
 git commit -m "Describe el cambio realizado"
 ```
 
-7. Sube tu rama a GitHub:
+7. Sube tu rama a GitHub por primera vez:
 
 ```bash
 git push -u origin desarrollo
+```
+
+La opción `-u` vincula tu rama local `desarrollo` con la rama remota `origin/desarrollo`. Solo necesitas utilizarla en este primer envío. Después de realizar nuevos commits, bastará con ejecutar:
+
+```bash
+git push
 ```
 
 ### 4.2 Crear el Pull Request
@@ -268,27 +274,23 @@ De esta manera, los cambios del colaborador solo se incorporan a la versión pri
 
 ## Paso 5 – Actualizar el repositorio y ejecutar el diagramador de AFD
 
-Una vez integrado el Pull Request, ambos integrantes pueden actualizar su copia local.
+Una vez integrado el Pull Request, ambos integrantes pueden incorporar los cambios de la rama principal `main` sin cambiar de rama.
 
-1. Cambia a la rama principal:
-
-```bash
-git switch main
-```
-
-2. Descarga la versión actualizada:
+1. Ejecuta el siguiente comando:
 
 ```bash
 git pull origin main
 ```
 
-3. Instala las dependencias y librerías necesarias:
+Este comando descarga los cambios de `main` e **incorpora esos cambios a la rama en la que te encuentras actualmente**. Así, el propietario actualizará su rama `main` y el colaborador podrá permanecer en `desarrollo`.
+
+2. Instala las dependencias y librerías necesarias:
 
 ```bash
 pip install networkx matplotlib
 ```
 
-4. Ejecuta el programa:
+3. Ejecuta el programa:
 
 ```bash
 python Main.py
