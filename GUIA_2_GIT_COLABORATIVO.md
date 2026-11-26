@@ -323,7 +323,7 @@ git push -u origin instrucciones-ejecucion
 
 9. El integrante 1 integra el Pull Request con **Merge pull request** y **Confirm merge**. Comprueba que `INSTRUCCIONES.md` aparece en la rama `main`.
 
-**Resultado esperado:** el propietario incorporó un archivo nuevo a `main) mediante un Pull Request. Ahora el colaborador podrá descargar ese archivo desde su rama `desarrollo` en el siguiente paso.
+**Resultado esperado:** el propietario incorporó un archivo nuevo a `main` mediante un Pull Request. Ahora el colaborador podrá descargar ese archivo desde su rama `desarrollo` en el siguiente paso.
 
 ---
 
